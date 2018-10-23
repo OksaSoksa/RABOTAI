@@ -19,7 +19,7 @@ public class News {
         this.newsDescription = newsDescription;
        // this.newsImg = newsImg;
     }
-
+    //asdasd
     public String getNewsId() {
         return newsId;
     }
