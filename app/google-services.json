@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "293600118156",
+    "firebase_url": "https://rabotai-367f7.firebaseio.com",
+    "project_id": "rabotai-367f7",
+    "storage_bucket": "rabotai-367f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293600118156:android:bb8de62480821619",
+        "android_client_info": {
+          "package_name": "com.example.rabotai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293600118156-86fpgumlbgifjm9rqdsbcmspgn0asb6a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rabotai",
+            "certificate_hash": "b476d5d13fb34534298a3a09dfa4767cfe4f4e8e"
+          }
+        },
+        {
+          "client_id": "293600118156-iuh72e9kolcov3t56vlmpmjqo8qcfg7d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rabotai",
+            "certificate_hash": "e7ed27bac4247fec0466bc8b9f17962604f50ebb"
+          }
+        },
+        {
+          "client_id": "293600118156-t88m7m8gafdip4mq4dgui64sqd4lf4ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOo-ZPT1Y4Gc1Q3sOQgrCre_VLcKgpqug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293600118156-t88m7m8gafdip4mq4dgui64sqd4lf4ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

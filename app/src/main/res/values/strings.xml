@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RABOTAI</string>
+    <string name="signin">Sign In</string>
+    <string name="reg">Regiatracia</string>
+    <string name="auth">Авторизация</string>
+    <string name="regist">Зарегистрироваться</string>
+    <string name="regstr">Регистрация</string>
+
+</resources>
