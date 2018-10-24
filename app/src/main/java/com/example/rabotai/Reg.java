@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Reg extends AppCompatActivity {
@@ -87,7 +88,11 @@ public class Reg extends AppCompatActivity {
                     Intent toMain = new Intent(Reg.this,MainActivity.class);
                     startActivity(toMain);
                 }else {
-                    toastMessage("Регистрация провальна");
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        toastMessage("Пользователь с такой почтой уже зарегистрирован");
+                    } else {
+                        toastMessage("Регистрация провальна");
+                    }
                 }
             }
         });

@@ -49,6 +49,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:text="@string/reg" />
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

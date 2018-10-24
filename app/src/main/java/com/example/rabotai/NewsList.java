@@ -18,6 +18,7 @@ import java.util.List;
  */
 
 public class NewsList extends ArrayAdapter<News> {
+
     private Activity context;
     private List<News> newsList;
 
@@ -32,13 +33,13 @@ public class NewsList extends ArrayAdapter<News> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.custom,null,true);
-        TextView textViewZadolovok = listViewItem.findViewById(R.id.zagolovok);
+        TextView textViewZagolovok = listViewItem.findViewById(R.id.zagolovok);
         TextView textViewNovost = listViewItem.findViewById(R.id.novost);
        // ImageView imgNews = listViewItem.findViewById(R.id.imgNews);
         News news = newsList.get(position);
 
-        textViewZadolovok.setText(news.getNewsName());
-        textViewNovost.setText(news.getNewsDescription());
+        textViewZagolovok.setText(news.getName());
+        textViewNovost.setText(news.getDescription());
        // imgNews.setImage
         return listViewItem;
     }

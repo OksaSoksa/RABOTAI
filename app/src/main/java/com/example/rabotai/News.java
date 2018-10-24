@@ -5,32 +5,32 @@ package com.example.rabotai;
  */
 
 public class News {
-    String newsId;
-    String newsDescription;
-    String newsName;
+   private String id;
+   private String description;
+   private String name;
    // Integer newsImg;
 
     public News(){
 
     }
-    public News (String newsId,String newsName,String newsDescription){
-        this.newsId = newsId;
-        this.newsName = newsName;
-        this.newsDescription = newsDescription;
+    public News (String newsId,String name,String description){
+        this.id = newsId;
+        this.name = name;
+        this.description = description;
        // this.newsImg = newsImg;
     }
     //asdasd
-    public String getNewsId() {
-        return newsId;
+    public String getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
     }
 
-    public String getNewsDescription() {
-        return newsDescription;
-    }
 
-    public String getNewsName() {
-        return newsName;
-    }
 /*
     public Integer getNewsImg() {
         return newsImg;

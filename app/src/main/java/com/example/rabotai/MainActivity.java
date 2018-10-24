@@ -32,8 +32,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
     NavigationView navigationView;
-    DatabaseReference databaseNews;
-
+    DatabaseReference databaseReference;
+    FirebaseDatabase database;
     ListView listView;
     List<News> newsList;
    // BaseAdapter adapter;
@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.list);
         newsList = new ArrayList<>();
-        databaseNews = FirebaseDatabase.getInstance().getReference("news");
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("news");
+       // databaseNews = FirebaseDatabase.getInstance().getReference("news");
 
         //Функция заполнения + проверка на интернет
        /* if(internetConnection() == true)
@@ -87,16 +89,21 @@ public class MainActivity extends AppCompatActivity{
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.auth:
-                        Intent toauth = new Intent(MainActivity.this,Auth.class);
+                        Intent toauth = new Intent(MainActivity.this, Auth.class);
                         startActivity(toauth);
                         break;
                     case R.id.main:
                         break;
+                    case R.id.map:
+                        Intent toMap = new Intent(MainActivity.this, MapsActivity.class);
+                        startActivity(toMap);
+                        break;
                 }
-                return false;
-            }
+                    return false;
+                }
+
         });
     }
 
@@ -105,26 +112,27 @@ public class MainActivity extends AppCompatActivity{
         super.onStart();
 
 
-        databaseNews.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                newsList.clear();
-                for (DataSnapshot newsSnapshot:dataSnapshot.getChildren()){
-                    Log.e("asasasdasd","asdserre" + dataSnapshot.getChildren().toString());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    newsList.clear();
+                    for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
+                        Log.e("asasasdasd", "asdserre" + dataSnapshot.getChildren().toString());
 
-                    News news = newsSnapshot.getValue(News.class);
-                    Log.e("asasasdasd","asdserre" );
-                    newsList.add(news);
+                        News news = newsSnapshot.getValue(News.class);
+                        Log.e("asasasdasd", "asdserre");
+                        newsList.add(news);
+                    }
+                    ArrayAdapter adapter = new NewsList(MainActivity.this, newsList);
+                    listView.setAdapter(adapter);
                 }
-                NewsList adapter = new NewsList(MainActivity.this,newsList);
-                listView.setAdapter(adapter);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+
     }
     //Функция заполнения listView
     /*

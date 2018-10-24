@@ -8,4 +8,9 @@
         android:id="@+id/main"
         android:title="Main">
     </item>
+    <item
+        android:title="Карта"
+        android:id="@+id/map">
+
+    </item>
 </menu>
