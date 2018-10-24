@@ -1,6 +1,8 @@
 package com.example.rabotai;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -35,6 +41,7 @@ public class NewsList extends ArrayAdapter<News> {
         View listViewItem = inflater.inflate(R.layout.custom,null,true);
         TextView textViewZagolovok = listViewItem.findViewById(R.id.zagolovok);
         TextView textViewNovost = listViewItem.findViewById(R.id.novost);
+        ImageView imgNews = listViewItem.findViewById(R.id.img);
        // ImageView imgNews = listViewItem.findViewById(R.id.imgNews);
         News news = newsList.get(position);
 
@@ -43,4 +50,5 @@ public class NewsList extends ArrayAdapter<News> {
        // imgNews.setImage
         return listViewItem;
     }
+
 }

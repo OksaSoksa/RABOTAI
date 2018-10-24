@@ -8,12 +8,12 @@ public class News {
    private String id;
    private String description;
    private String name;
-   // Integer newsImg;
+   private String image;
 
     public News(){
 
     }
-    public News (String newsId,String name,String description){
+    public News (String newsId,String name,String description,String image){
         this.id = newsId;
         this.name = name;
         this.description = description;
@@ -30,10 +30,8 @@ public class News {
         return description;
     }
 
-
-/*
-    public Integer getNewsImg() {
-        return newsImg;
-    }*/
+    public String getImg() {
+        return image;
+    }
 }
 
