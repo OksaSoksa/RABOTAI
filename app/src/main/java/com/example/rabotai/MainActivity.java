@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.auth:
-                        Intent toauth = new Intent(MainActivity.this, Auth.class);
-                        startActivity(toauth);
+                        Intent toAuth = new Intent(MainActivity.this, Auth.class);
+                        startActivity(toAuth);
                         break;
                     case R.id.main:
                         break;
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity{
                         Intent toMap = new Intent(MainActivity.this, MapsActivity.class);
                         startActivity(toMap);
                         break;
+
                 }
                     return false;
                 }

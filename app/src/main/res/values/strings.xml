@@ -6,5 +6,7 @@
     <string name="regist">Зарегистрироваться</string>
     <string name="regstr">Регистрация</string>
     <string name="title_activity_maps">Map</string>
+    <string name="dateStart">Начало чемпионата</string>
+    <string name="dateEnd">Конец чемпионата</string>
 
 </resources>
