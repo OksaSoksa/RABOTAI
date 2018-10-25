@@ -8,14 +8,16 @@ public class News {
    private String id;
    private String description;
    private String name;
+   private Long date;
    private String image;
 
     public News(){
 
     }
-    public News (String newsId,String name,String description,String image){
+    public News (String newsId,Long date,String name,String description,String image){
         this.id = newsId;
         this.name = name;
+        this.date = date;
         this.description = description;
        // this.newsImg = newsImg;
     }
@@ -32,6 +34,10 @@ public class News {
 
     public String getImg() {
         return image;
+    }
+
+    public Long getDate() {
+        return date;
     }
 }
 

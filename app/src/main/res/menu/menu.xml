@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
-    android:title="Auth"
+    android:title="Авторизация"
     android:id="@+id/auth">
 </item>
     <item
         android:id="@+id/main"
-        android:title="Main">
+        android:title="Главная страница">
     </item>
     <item
-        android:title="Карта"
-        android:id="@+id/map">
-    </item>
+        android:id="@+id/map"
+        android:title="Карта"></item>
     <item
         android:title="Список "
         android:id="@+id/chemp"/>
