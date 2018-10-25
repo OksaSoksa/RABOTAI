@@ -106,6 +106,14 @@ public class MainActivity extends AppCompatActivity{
                         Intent toMap = new Intent(MainActivity.this, MapsActivity.class);
                         startActivity(toMap);
                         break;
+                    case R.id.chemp:
+                        Intent toChemp = new Intent(MainActivity.this,ChempActivity.class);
+                        startActivity(toChemp);
+                        break;
+                    case R.id.par:
+                        Intent toPar = new Intent(MainActivity.this,ParticipantsActivity.class);
+                        startActivity(toPar);
+                        break;
 
                 }
                     return false;

@@ -12,6 +12,9 @@
         android:id="@+id/map"
         android:title="Карта"></item>
     <item
-        android:title="Список "
+        android:title="Список чемпионатов"
         android:id="@+id/chemp"/>
+    <item
+        android:title="Список участников"
+        android:id="@+id/par"/>
 </menu>
