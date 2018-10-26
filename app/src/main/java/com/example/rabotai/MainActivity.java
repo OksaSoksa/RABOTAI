@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity{
                 }
             });
         } else {
-            Toast.makeText(this, "Отсутствует интернет-соединение", Toast.LENGTH_LONG).show();
+            toastMessage("Отсутствует интернет-соединение");
         }
 
     }
@@ -172,6 +172,9 @@ public class MainActivity extends AppCompatActivity{
             return true;
         }
         return false;
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
 }

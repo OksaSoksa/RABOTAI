@@ -1,6 +1,9 @@
 package com.example.rabotai;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -28,8 +31,6 @@ public class Auth extends AppCompatActivity {
     private Button btnsign;
     private Button btnreg;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class Auth extends AppCompatActivity {
         btnsign = findViewById(R.id.btnsign);
         btnreg = findViewById(R.id.btnreg);
         mAuth = FirebaseAuth.getInstance();
+        //меню
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,6 +56,7 @@ public class Auth extends AppCompatActivity {
                 return false;
             }
         });
+        //проверяет базу на наличие пользователей?
         mAuthListener =new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -65,26 +68,31 @@ public class Auth extends AppCompatActivity {
                     Log.e(TAG,"onAuthStateChanged:signed_out");
                     //toastMessage("Successfully sign ou!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!t");
                 }
-
             }
         };
-        btnsign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = log.getText().toString();
-                String password = pass.getText().toString();
-                if (!email.equals("")&&!password.equals("")){
-                    Log.e("Srabotalo","Srabotalo");
-                    mAuth.signInWithEmailAndPassword(email,password);
-                    toastMessage("Успешная авторизация");
-                    Intent myMainCativity = new Intent(Auth.this,MainActivity.class );
-                    startActivity(myMainCativity);
-                } else {
-                    toastMessage("VVedi chota");
+        //авторизация
+       if(internetConnection() == true) {
+            btnsign.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String email = log.getText().toString();
+                    String password = pass.getText().toString();
+                    if (!email.equals("") && !password.equals("")) {
+                        Log.e("Srabotalo", "Srabotalo");
+                        mAuth.signInWithEmailAndPassword(email, password);
+                        toastMessage("Успешная авторизация");
+                        Intent myMainCativity = new Intent(Auth.this, MainActivity.class);
+                        startActivity(myMainCativity);
+                    } else{
+                        toastMessage("Ошибка");
+                        }
                 }
-            }
-        });
+            });
+        }else {
+           toastMessage("Отсутствует интернет-соединение");
+       };
 
+        //переход на регистрацию
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,30 +100,8 @@ public class Auth extends AppCompatActivity {
                 startActivity(toReg);
             }
         });
-
-
-
-       /* btnreg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String memail = log.getText().toString();
-                String mpass = pass.getText().toString();
-                registration(memail,mpass);
-            }
-        });*/
     }
-    /*public void registration (String memail, String mpass){
-        mAuth.createUserWithEmailAndPassword(memail,mpass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    toastMessage("Регистрация успешна");
-                }else {
-                    toastMessage("Регистрация провальна");
-                }
-            }
-        });
-    };*/
+    //что то что бы работало
     @Override
     public void onStart(){
         super.onStart();
@@ -128,8 +114,18 @@ public class Auth extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    //вывод сообщения
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+    //Функция  проверка на интернет
+    public boolean internetConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        return false;
     }
 
 

@@ -1,6 +1,9 @@
 package com.example.rabotai;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.nfc.tech.NfcV;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -37,6 +40,7 @@ public class Reg extends AppCompatActivity {
         registacia = findViewById(R.id.regist);
         navigationView = findViewById(R.id.navi);
         mAuth = FirebaseAuth.getInstance();
+        //меню
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -53,6 +57,7 @@ public class Reg extends AppCompatActivity {
                 return false;
             }
         });
+        //зачем то тоже проверяет на наличие пользователей???
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -67,18 +72,24 @@ public class Reg extends AppCompatActivity {
 
             }
         };
-        registacia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("asdd ad","dfdfgdfg");
-                String memail = login.getText().toString();
-                Log.e("mail ad","111    1     "+ memail);
-                String mpass = password.getText().toString();
-                Log.e("pass ad","11111    " + mpass);
-                registration(memail,mpass);
-            }
-        });
+        if (internetConnection() == true) {
+            //собсна регистрация
+            registacia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("asdd ad", "dfdfgdfg");
+                    String memail = login.getText().toString();
+                    Log.e("mail ad", "111    1     " + memail);
+                    String mpass = password.getText().toString();
+                    Log.e("pass ad", "11111    " + mpass);
+                    registration(memail, mpass);
+                }
+            });
+        }else {
+            toastMessage("Отсутствует интернет-соединение");
+        }
     }
+    //процесс регистрации
     public void registration (String memail, String mpass){
         mAuth.createUserWithEmailAndPassword(memail,mpass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -97,6 +108,7 @@ public class Reg extends AppCompatActivity {
             }
         });
     };
+    //тут тоже без этого не работает
     @Override
     public void onStart(){
         super.onStart();
@@ -109,7 +121,17 @@ public class Reg extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    //и снова для сообщений
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+    //проверка интернета
+    public boolean internetConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo !=null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        return false;
     }
 }
