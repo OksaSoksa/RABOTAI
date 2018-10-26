@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
 
-
+        if(internetConnection() == true) {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -147,6 +147,9 @@ public class MainActivity extends AppCompatActivity{
 
                 }
             });
+        } else {
+            Toast.makeText(this, "Отсутствует интернет-соединение", Toast.LENGTH_LONG).show();
+        }
 
     }
     //Функция заполнения listView
