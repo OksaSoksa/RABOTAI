@@ -25,12 +25,13 @@ public class Chemps {
     }
     //asdasd
     public String getId() {
+
         return id;
     }
     public String getName() {
+
         return name;
     }
-
     public Long getDateStart() {
 
         return dateStart;

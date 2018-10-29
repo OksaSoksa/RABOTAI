@@ -25,6 +25,7 @@ public class NewsList extends ArrayAdapter<News> {
     Date date = new Date();
     Long dateLong;
 
+
     public NewsList (Activity context,List<News> newsList){
         super(context,R.layout.custom_news,newsList);
         this.context = context;
@@ -36,11 +37,10 @@ public class NewsList extends ArrayAdapter<News> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.custom_news,null,true);
-        TextView textViewZagolovok = listViewItem.findViewById(R.id.zagolovok);
+        TextView textViewZagolovok = listViewItem.findViewById(R.id.name);
         TextView textViewNovost = listViewItem.findViewById(R.id.novost);
-        TextView dateNews = listViewItem.findViewById(R.id.dateText);
+        TextView dateNews = listViewItem.findViewById(R.id.date);
         ImageView imgNews = listViewItem.findViewById(R.id.img);
-       // ImageView imgNews = listViewItem.findViewById(R.id.imgNews);
         News news = newsList.get(position);
 
         textViewZagolovok.setText(news.getName());
@@ -49,6 +49,8 @@ public class NewsList extends ArrayAdapter<News> {
         date = new java.util.Date(dateLong);
         String dateTimeNews = new SimpleDateFormat("MM dd, yyyy, hh:mma").format(date);
         dateNews.setText(dateTimeNews);
+
+
        // imgNews.setImage
         return listViewItem;
     }

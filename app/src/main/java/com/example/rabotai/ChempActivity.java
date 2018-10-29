@@ -3,6 +3,7 @@ package com.example.rabotai;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,7 +30,9 @@ public class ChempActivity extends AppCompatActivity {
         chempListView = findViewById(R.id.chempListView);
         chempsList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
+        Log.w ("Error", "Error 1");
         databaseReference = database.getReference("championships");
+        Log.w ("Error", "Error 2");
     }
 
     @Override
@@ -38,12 +41,16 @@ public class ChempActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.w ("Error", "Error 3");
                 chempsList.clear();
                 for(DataSnapshot chempSnapshot:dataSnapshot.getChildren()){
+                    Log.w ("Error", "Error");
                     Chemps chemps = chempSnapshot.getValue(Chemps.class);
+                    //Log.w ("Error", "ChEMPS VALUSE "+ chemps.getName());
                     chempsList.add(chemps);
                 }
                 ArrayAdapter adapter = new ChempsList(ChempActivity.this,chempsList);
+                Log.w ("Error", "Error 5");
                 chempListView.setAdapter(adapter);
             }
 
@@ -53,4 +60,5 @@ public class ChempActivity extends AppCompatActivity {
             }
         });
     }
+
 }

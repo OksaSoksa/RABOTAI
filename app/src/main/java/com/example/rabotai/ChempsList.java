@@ -3,6 +3,7 @@ package com.example.rabotai;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,14 @@ public class ChempsList extends ArrayAdapter<Chemps> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.custom_chemp,null,true);
+        Log.w ("Error", "CHAMP LIST 1");
         TextView nameText = listViewItem.findViewById(R.id.chempName);
         TextView dateStart = listViewItem.findViewById(R.id.dateStart);
         TextView dateEnd = listViewItem.findViewById(R.id.dateEnd);
         Chemps chemps = chempsList.get(position);
-
+        Log.w ("Error", "CHAMp 2");
         nameText.setText(chemps.getName());
+        Log.w ("Error", "champ 3");
       //  dateLongStart = chemps.getDateStart()*1000;
       //  date = new java.util.Date(dateLongStart);
        // String dateTimsStart = new SimpleDateFormat("MM dd,yyyy,hh:mma").format(date);

@@ -77,14 +77,15 @@ public class Auth extends AppCompatActivity {
                 public void onClick(View v) {
                     String email = log.getText().toString();
                     String password = pass.getText().toString();
-                    if (!email.equals("") && !password.equals("")) {
+                    String s = email.toString();
+                    if (!email.equals("") && !password.equals("")&&(s.contains("@"))) {
                         Log.e("Srabotalo", "Srabotalo");
                         mAuth.signInWithEmailAndPassword(email, password);
                         toastMessage("Успешная авторизация");
                         Intent myMainCativity = new Intent(Auth.this, MainActivity.class);
                         startActivity(myMainCativity);
                     } else{
-                        toastMessage("Ошибка");
+                        toastMessage("Ошибка e-mail");
                         }
                 }
             });
@@ -101,6 +102,7 @@ public class Auth extends AppCompatActivity {
             }
         });
     }
+
     //что то что бы работало
     @Override
     public void onStart(){

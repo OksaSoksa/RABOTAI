@@ -33,7 +33,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.DatabaseMetaData;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
@@ -42,19 +44,16 @@ public class MainActivity extends AppCompatActivity{
     FirebaseDatabase database;
     ListView listView;
     List<News> newsList;
-   // BaseAdapter adapter;
-
+    String name;
+    String description;
+    Long dateLong;
+    Date date = new Date();
+    String dateNews;
     //
 
 
     //
 
-
-   // Context context;
-   // LayoutInflater layoutInflater;
-   // ArrayList<CustomAdapter.NewsGetter> news = new ArrayList<CustomAdapter.NewsGetter>();
-   // String[] zagolovok = {"Novost 1","Novost 2","Novost 3","Novost 4","Novost 5","Novost 6","Novost 7","Novost 8"};
-   // String[] novost = {"lalal 1","lalal 2","lalal 3","lalal 4","lalal 5","lalal 6","lalal 7","lalal 8",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,33 +63,7 @@ public class MainActivity extends AppCompatActivity{
         newsList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("news");
-       // databaseNews = FirebaseDatabase.getInstance().getReference("news");
 
-        //Функция заполнения + проверка на интернет
-       /* if(internetConnection() == true)
-        {
-           // fillData();
-
-        }
-        else {
-            Toast.makeText(this, "ELISABET OLSEN SAY: PIZDEC NAHOOY BLET", Toast.LENGTH_LONG).show();
-        }*/
-
-        //Обьевляем адаптеру
-       // adapter = new CustomAdapter(this,news);
-
-       // listView.setAdapter(adapter);
-       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String news = String.valueOf(parent.getItemIdAtPosition(position));
-                Toast.makeText(MainActivity.this,news,Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        ArrayAdapter<String> adapter = new CustomAdapter(this,news);
-        listView.setAdapter(adapter);
-        */
         navigationView=findViewById(R.id.navi);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -147,22 +120,70 @@ public class MainActivity extends AppCompatActivity{
 
                 }
             });
-        } else {
+        }
+        else {
             toastMessage("Отсутствует интернет-соединение");
         }
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        name = newsList.get(position).getName();
+                       description = newsList.get(position).getDescription();
+                       Intent FullNews0 = new Intent(MainActivity.this,FullNews.class);
+                        dateLong = newsList.get(position).getDate()*1000;
+                        date = new java.util.Date(dateLong);
+                        String dateTimeNews = new SimpleDateFormat("MM dd, yyyy, hh:mma").format(date);
+                        dateNews = dateTimeNews;
+                        FullNews0.putExtra("fullname",name);
+                        FullNews0.putExtra("fulldesc",description);
+                        FullNews0.putExtra("fulldate",dateNews);
+                       startActivity(FullNews0);
+                       break;
+                    case 1:
+                    name = newsList.get(position).getName();
+                    description = newsList.get(position).getDescription();
+                    Intent FullNews1 = new Intent(MainActivity.this,FullNews.class);
+                    dateLong = newsList.get(position).getDate()*1000;
+                    date = new java.util.Date(dateLong);
+                    String dateTimeNews1 = new SimpleDateFormat("MM dd, yyyy, hh:mma").format(date);
+                    dateNews = dateTimeNews1;
+                    FullNews1.putExtra("fullname",name);
+                    FullNews1.putExtra("fulldesc",description);
+                    FullNews1.putExtra("fulldate",dateNews);
+                    startActivity(FullNews1);
+                    break;
+                    case 2:
+                        name = newsList.get(position).getName();
+                        description = newsList.get(position).getDescription();
+                        Intent FullNews2 = new Intent(MainActivity.this,FullNews.class);
+                        dateLong = newsList.get(position).getDate()*1000;
+                        date = new java.util.Date(dateLong);
+                        String dateTimeNews2 = new SimpleDateFormat("MM dd, yyyy, hh:mma").format(date);
+                        dateNews = dateTimeNews2;
+                        FullNews2.putExtra("fullname",name);
+                        FullNews2.putExtra("fulldesc",description);
+                        FullNews2.putExtra("fulldate",dateNews);
+                        startActivity(FullNews2);
+                        break;
+                    case 3:
+                        name = newsList.get(position).getName();
+                        description = newsList.get(position).getDescription();
+                        Intent FullNews3 = new Intent(MainActivity.this,FullNews.class);
+                        dateLong = newsList.get(position).getDate()*1000;
+                        date = new java.util.Date(dateLong);
+                        String dateTimeNews3 = new SimpleDateFormat("MM dd, yyyy, hh:mma").format(date);
+                        dateNews = dateTimeNews3;
+                        FullNews3.putExtra("fullname",name);
+                        FullNews3.putExtra("fulldesc",description);
+                        FullNews3.putExtra("fulldate",dateNews);
+                        startActivity(FullNews3);
+                        break;
+                }
+            }
+        });
     }
-    //Функция заполнения listView
-    /*
-    * 1)загрузить данные из базы
-    * 2)нам нужно их распихать
-    * 3)должно работать изи просто*/
-  /*  void fillData(){
-
-        for (int i = 0 ;i<zagolovok.length;i++){
-            news.add(new CustomAdapter.NewsGetter(zagolovok[i],novost[i],R.drawable.kit));
-        }
-    }*/
 
     //Функция  проверка на интернет
     public boolean internetConnection(){

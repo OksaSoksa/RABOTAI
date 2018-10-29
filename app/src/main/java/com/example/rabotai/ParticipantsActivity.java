@@ -68,6 +68,7 @@ public class ParticipantsActivity extends AppCompatActivity {
             toastMessage("Отсутствует интрнет-соединение");
         }
     }
+
     public boolean internetConnection(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

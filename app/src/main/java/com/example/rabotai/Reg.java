@@ -31,6 +31,8 @@ public class Reg extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button registacia;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +83,14 @@ public class Reg extends AppCompatActivity {
                     String memail = login.getText().toString();
                     Log.e("mail ad", "111    1     " + memail);
                     String mpass = password.getText().toString();
+                    String s = memail.toString();
                     Log.e("pass ad", "11111    " + mpass);
-                    registration(memail, mpass);
+                    if (s.contains("@")) {
+                        registration(memail, mpass);
+                    }
+                    else {
+                        toastMessage("Ошибка e-mail");
+                    }
                 }
             });
         }else {
@@ -102,8 +110,8 @@ public class Reg extends AppCompatActivity {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         toastMessage("Пользователь с такой почтой уже зарегистрирован");
                     } else {
-                        toastMessage("Регистрация провальна");
-                    }
+                    toastMessage("Регистрация провальна");
+                }
                 }
             }
         });
