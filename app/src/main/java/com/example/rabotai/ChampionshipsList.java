@@ -10,24 +10,26 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Администратор on 25.10.2018.
+ * Created by Администратор on 30.10.2018.
  */
 
-public class ChempsList extends ArrayAdapter<Chemps> {
+public class ChampionshipsList extends ArrayAdapter<Championships> {
     private Activity context;
-    private List<Chemps> chempsList;
+    private List<Championships> championshipsList;
     Date date = new Date();
     Long dateLongStart;
     Long dateLongEnd;
-    public ChempsList (Activity context,List<Chemps> chempsList){
-        super (context,R.layout.custom_chemp, chempsList);
+    public ChampionshipsList (Activity context,List<Championships> championshipsList){
+        super (context,R.layout.custom_chemp, championshipsList);
+        Log.e("werwer","werwedsfse1");
         this.context = context;
-        this.chempsList = chempsList;
+        Log.e("werwer","qwsdeqw2"+context);
+        this.championshipsList = championshipsList;
+        Log.e("werwer","qwes3"+championshipsList);
     }
 
     @NonNull
@@ -39,14 +41,14 @@ public class ChempsList extends ArrayAdapter<Chemps> {
         TextView nameText = listViewItem.findViewById(R.id.chempName);
         TextView dateStart = listViewItem.findViewById(R.id.dateStart);
         TextView dateEnd = listViewItem.findViewById(R.id.dateEnd);
-        Chemps chemps = chempsList.get(position);
+        Championships chemps = championshipsList.get(position);
         Log.w ("Error", "CHAMp 2");
         nameText.setText(chemps.getName());
         Log.w ("Error", "champ 3");
-      //  dateLongStart = chemps.getDateStart()*1000;
-      //  date = new java.util.Date(dateLongStart);
-       // String dateTimsStart = new SimpleDateFormat("MM dd,yyyy,hh:mma").format(date);
-       // dateStart.setText(dateTimsStart);
+        //  dateLongStart = chemps.getDateStart()*1000;
+        //  date = new java.util.Date(dateLongStart);
+        // String dateTimsStart = new SimpleDateFormat("MM dd,yyyy,hh:mma").format(date);
+        // dateStart.setText(dateTimsStart);
         return listViewItem;
 
 

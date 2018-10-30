@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
                         startActivity(toMap);
                         break;
                     case R.id.chemp:
-                        Intent toChemp = new Intent(MainActivity.this,ChempActivity.class);
+                        Intent toChemp = new Intent(MainActivity.this,ChampionshipActivity.class);
                         startActivity(toChemp);
                         break;
                     case R.id.par:
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity{
                         FullNews2.putExtra("fulldesc",description);
                         FullNews2.putExtra("fulldate",dateNews);
                         startActivity(FullNews2);
-                        break;
+                               break;
                     case 3:
                         name = newsList.get(position).getName();
                         description = newsList.get(position).getDescription();

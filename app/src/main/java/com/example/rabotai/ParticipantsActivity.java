@@ -57,6 +57,9 @@ public class ParticipantsActivity extends AppCompatActivity {
                     }
                     ArrayAdapter adapter = new ParticipantsList(ParticipantsActivity.this, participantsList);
                     parList.setAdapter(adapter);
+
+
+
                 }
 
                 @Override
@@ -67,6 +70,7 @@ public class ParticipantsActivity extends AppCompatActivity {
         } else {
             toastMessage("Отсутствует интрнет-соединение");
         }
+
     }
 
     public boolean internetConnection(){
