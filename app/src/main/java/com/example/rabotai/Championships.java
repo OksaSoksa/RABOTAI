@@ -7,7 +7,7 @@ import android.util.Log;
  */
 
 public class Championships {
-    private String id;
+    private Long id;
     private Long dateStart;
     private Long dateEnd;
     private String name;
@@ -16,31 +16,32 @@ public class Championships {
     public Championships(){
 
     }
-    public Championships (String newsId,String name){
+    public Championships (Long newsId,String name,Long dateStart,Long dateEnd){
     //public Championships (String newsId,Long dateStart,Long dateEnd,String name){
         this.id = newsId;
         this.name = name;
-        //this.dateStart = dateStart;
-        //this.dateEnd = dateEnd;
+        Log.e("wer", "qwe"+name);
+        this.dateStart = dateStart;
+        Log.e("wer","qwe"+dateStart);
+        this.dateEnd = dateEnd;
         // this.newsImg = newsImg;
     }
     //asdasd
-    public String getId() {
+    public Long getId() {
         Log.w ("Error", "Error 5");
         return id;
     }
     public String getName() {
-        Log.w ("Error", "Error 5");
+        Log.w ("Error", "Error 57"+name);
         return name;
     }
-    /*
+
     public Long getDateStart() {
-        Log.w ("Error", "Error 5");
         return dateStart;
     }
 
     public Long getDateEnd() {
         return dateEnd;
     }
-    */
+
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,14 +42,15 @@ public class ChampionshipsList extends ArrayAdapter<Championships> {
         TextView nameText = listViewItem.findViewById(R.id.chempName);
         TextView dateStart = listViewItem.findViewById(R.id.dateStart);
         TextView dateEnd = listViewItem.findViewById(R.id.dateEnd);
-        Championships chemps = championshipsList.get(position);
+        Championships championships = championshipsList.get(position);
         Log.w ("Error", "CHAMp 2");
-        nameText.setText(chemps.getName());
+        nameText.setText(championships.getName());
         Log.w ("Error", "champ 3");
-        //  dateLongStart = chemps.getDateStart()*1000;
-        //  date = new java.util.Date(dateLongStart);
-        // String dateTimsStart = new SimpleDateFormat("MM dd,yyyy,hh:mma").format(date);
-        // dateStart.setText(dateTimsStart);
+         // dateLongStart = championships.getDateStart()*1000;
+          //date = new java.util.Date(dateLongStart);
+         //String dateTimesStart = new SimpleDateFormat("MM dd,yyyy,hh:mma").format(date);
+        // Log.e("Error","qwe"+dateTimesStart);
+        // dateStart.setText(dateTimesStart);
         return listViewItem;
 
 
