@@ -105,10 +105,8 @@ public class MainActivity extends AppCompatActivity{
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     newsList.clear();
                     for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
-                        Log.e("asasasdasd", "asdserre" + dataSnapshot.getChildren().toString());
 
                         News news = newsSnapshot.getValue(News.class);
-                        Log.e("asasasdasd", "asdserre");
                         newsList.add(news);
                     }
                     ArrayAdapter adapter = new NewsList(MainActivity.this, newsList);

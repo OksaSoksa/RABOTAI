@@ -62,10 +62,10 @@ public class Auth extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user !=null){
-                    Log.e(TAG,"onAuthStateChanged:signed_in:"+user.getEmail());
+
                     //toastMessage("Successfully sign in");
                 } else {
-                    Log.e(TAG,"onAuthStateChanged:signed_out");
+
                     //toastMessage("Successfully sign ou!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!t");
                 }
             }
@@ -79,7 +79,7 @@ public class Auth extends AppCompatActivity {
                     String password = pass.getText().toString();
                     String s = email.toString();
                     if (!email.equals("") && !password.equals("")&&(s.contains("@"))) {
-                        Log.e("Srabotalo", "Srabotalo");
+
                         mAuth.signInWithEmailAndPassword(email, password);
                         toastMessage("Успешная авторизация");
                         Intent myMainCativity = new Intent(Auth.this, MainActivity.class);

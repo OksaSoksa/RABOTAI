@@ -79,12 +79,9 @@ public class Reg extends AppCompatActivity {
             registacia.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("asdd ad", "dfdfgdfg");
                     String memail = login.getText().toString();
-                    Log.e("mail ad", "111    1     " + memail);
                     String mpass = password.getText().toString();
                     String s = memail.toString();
-                    Log.e("pass ad", "11111    " + mpass);
                     if (s.contains("@")) {
                         registration(memail, mpass);
                     }

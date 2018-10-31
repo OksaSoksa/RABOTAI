@@ -33,9 +33,7 @@ public class ChampionshipActivity extends AppCompatActivity{
             chempListView = findViewById(R.id.chempListView);
             chempsList = new ArrayList<>();
             database = FirebaseDatabase.getInstance();
-            Log.w ("Error", "Error 1");
             databaseReference = database.getReference("championships");
-            Log.w ("Error", "Error 2 = " );
         }
 
         @Override
@@ -44,25 +42,22 @@ public class ChampionshipActivity extends AppCompatActivity{
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.w ("Error", "Error 3");
+
                     chempsList.clear();
                     for(DataSnapshot championshipSnapshot:dataSnapshot.getChildren()){
-
-                        Log.w ("Error", "Error = gfdgdgdtggfdf "+ dataSnapshot.getChildrenCount());
-
                         Championships championships = championshipSnapshot.getValue(Championships.class);
-                        //Log.w ("Error", "ChEMPS VALUSE "+ chemps.getName());
-                        Log.w ("Error", "Error 5");
+
+                        championships.setDateStart((Long) championshipSnapshot.child("date-start").getValue());
+                        championships.setDateEnd((Long) championshipSnapshot.child("date-end").getValue());
+
                         chempsList.add(championships);
                     }
                     ArrayAdapter adapter = new ChampionshipsList(ChampionshipActivity.this,chempsList);
-                    Log.w ("Error", "Error 6");
                     chempListView.setAdapter(adapter);
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
                 }
             });
         }
